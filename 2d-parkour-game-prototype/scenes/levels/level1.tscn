@@ -1,0 +1,262 @@
+[gd_scene load_steps=14 format=4 uid="uid://dkooitt1401sq"]
+
+[ext_resource type="Script" path="res://assets/game_manager.gd" id="1_qhks7"]
+[ext_resource type="Texture2D" uid="uid://8njtj2fs1e3m" path="res://assets/Green.png" id="2_bshql"]
+[ext_resource type="Texture2D" uid="uid://31uhyvcp1ein" path="res://assets/Terrain (16x16).png" id="3_iqksn"]
+[ext_resource type="PackedScene" uid="uid://br87q0soulwu6" path="res://scenes/game_objects/sonic.tscn" id="4_r5jya"]
+[ext_resource type="PackedScene" uid="uid://u0a666bfu44u" path="res://scenes/game_objects/collectable.tscn" id="5_kuirk"]
+[ext_resource type="PackedScene" uid="uid://dojge4s804jbe" path="res://scenes/game_objects/finish.tscn" id="6_6n5yj"]
+[ext_resource type="PackedScene" uid="uid://mm4mnrhfwy7j" path="res://scenes/levels/level2.tscn" id="7_p5u3w"]
+[ext_resource type="PackedScene" uid="uid://sgo7lgbs853" path="res://scenes/game_objects/basic_enemy.tscn" id="8_apar2"]
+[ext_resource type="Script" path="res://scenes/game_objects/area_2d.gd" id="9_8fpvj"]
+[ext_resource type="PackedScene" uid="uid://b0wx3vvjoj80d" path="res://scenes/menu/pause.tscn" id="10_btddk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_appgc"]
+texture = ExtResource("3_iqksn")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0 = 0
+10:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+10:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+17:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+20:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+18:10/0 = 0
+19:10/0 = 0
+20:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0816r"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_appgc")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nhdel"]
+
+[node name="Node" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_qhks7")
+
+[node name="SceneObjects" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="SceneObjects"]
+texture_filter = 1
+offset_right = 2354.0
+offset_bottom = 668.0
+texture = ExtResource("2_bshql")
+stretch_mode = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="SceneObjects"]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAA0AAAAIAAEAAAABAA0AAAAHAAAAAAACAA0AAAAIAAAAAAADAAwAAAAGAAAAAAADAA0AAAAGAAEAAAAEAAwAAAAHAAAAAAAEAA0AAAAHAAEAAAAFAAwAAAAIAAAAAAAFAA0AAAAIAAEAAAAGAAsAAAAGAAAAAAAGAAwAAAAGAAEAAAAGAA0AAAAGAAIAAAAHAAsAAAAHAAAAAAAHAAwAAAAHAAEAAAAHAA0AAAAHAAIAAAAIAAwAAAAHAAEAAAAIAA0AAAAHAAIAAAAJAAwAAAAHAAEAAAAJAA0AAAAHAAIAAAAKAAwAAAAHAAEAAAAKAA0AAAAHAAIAAAALAAwAAAAHAAEAAAALAA0AAAAHAAIAAAAMAAwAAAAHAAEAAAAMAA0AAAAHAAIAAAANAAwAAAAHAAEAAAANAA0AAAAHAAIAAAAOAAwAAAAHAAEAAAAOAA0AAAAHAAIAAAAPAAwAAAAHAAEAAAAPAA0AAAAHAAIAAAAQAAwAAAAHAAEAAAAQAA0AAAAHAAIAAAARAAwAAAAHAAEAAAARAA0AAAAHAAIAAAASAAwAAAAIAAEAAAASAA0AAAAIAAIAAAAVAAwAAAAGAAEAAAAVAA0AAAAGAAIAAAAWAAwAAAAHAAEAAAAWAA0AAAAHAAIAAAAIAAsAAAAHAAAAAAAJAAsAAAAHAAAAAAAKAAsAAAAHAAAAAAALAAsAAAAHAAAAAAAMAAsAAAAHAAAAAAANAAsAAAAHAAAAAAAOAAsAAAAHAAAAAAAPAAsAAAAHAAAAAAAXAAwAAAAHAAEAAAAXAA0AAAAHAAIAAAAAAAwAAAAIAAEAAAAAAAsAAAAIAAEAAAAAAAoAAAAIAAEAAAAAAAkAAAAIAAEAAAAAAAgAAAAIAAEAAAAAAAcAAAAIAAEAAAAAAAYAAAAIAAEAAAAAAAUAAAAIAAEAAAAAAAQAAAAIAAEAAAAAAAMAAAAIAAEAAAAAAAIAAAAIAAEAAAAAAAEAAAAIAAEAAAABAAAAAAAHAAIAAAACAAAAAAAHAAIAAAADAAAAAAAHAAIAAAAEAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAAFAAAAAAAHAAIAAAAGAAAAAAAHAAIAAAAHAAAAAAAHAAIAAAAIAAAAAAAHAAIAAAAJAAAAAAAHAAIAAAAKAAAAAAAHAAIAAAALAAAAAAAHAAIAAAAMAAAAAAAHAAIAAAANAAAAAAAHAAIAAAAOAAAAAAAHAAIAAAAPAAAAAAAHAAIAAAAQAAAAAAAHAAIAAAARAAAAAAAHAAIAAAASAAAAAAAHAAIAAAATAAAAAAAHAAIAAAAUAAAAAAAHAAIAAAAVAAAAAAAHAAIAAAAWAAAAAAAHAAIAAAAXAAAAAAAHAAIAAAAYAAAAAAAHAAIAAAAZAAAAAAAHAAIAAAAaAAAAAAAHAAIAAAAbAAAAAAAHAAIAAAAcAAAAAAAHAAIAAAAdAAAAAAAHAAIAAAAeAAAAAAAHAAIAAAAfAAAAAAAHAAIAAAAgAAAAAAAHAAIAAAAhAAAAAAAHAAIAAAAiAAAAAAAHAAIAAAAjAAAAAAAHAAIAAAAkAAAAAAAHAAIAAAAlAAAAAAAHAAIAAAAmAAAAAAAHAAIAAAAnAAAAAAAHAAIAAAAoAAAAAAAHAAIAAAAYAAwAAAAHAAEAAAAYAA0AAAAHAAIAAAAZAAwAAAAHAAEAAAAZAA0AAAAHAAIAAAAaAAwAAAAHAAEAAAAaAA0AAAAHAAIAAAAbAAwAAAAHAAEAAAAbAA0AAAAHAAIAAAAcAAwAAAAHAAEAAAAcAA0AAAAHAAIAAAAdAAwAAAAHAAEAAAAdAA0AAAAHAAIAAAAeAAwAAAAHAAEAAAAeAA0AAAAHAAIAAAAfAAwAAAAHAAEAAAAfAA0AAAAHAAIAAAAgAAwAAAAHAAEAAAAgAA0AAAAHAAIAAAAhAAwAAAAHAAEAAAAhAA0AAAAHAAIAAAAiAAwAAAAHAAEAAAAiAA0AAAAHAAIAAAAjAAwAAAAHAAEAAAAjAA0AAAAHAAIAAAAkAAwAAAAHAAEAAAAkAA0AAAAHAAIAAAAlAAwAAAAHAAEAAAAlAA0AAAAHAAIAAAAmAAwAAAAHAAEAAAAmAA0AAAAHAAIAAAAnAAwAAAAHAAEAAAAnAA0AAAAHAAIAAAAoAAwAAAAHAAEAAAAoAA0AAAAHAAIAAAApAAwAAAAHAAEAAAApAA0AAAAHAAIAAAAqAAwAAAAHAAEAAAAqAA0AAAAHAAIAAAArAAwAAAAHAAEAAAArAA0AAAAHAAIAAAAsAAwAAAAHAAEAAAAsAA0AAAAHAAIAAAAtAAwAAAAHAAEAAAAtAA0AAAAHAAIAAAAuAAwAAAAHAAEAAAAuAA0AAAAHAAIAAAAvAAwAAAAHAAEAAAAvAA0AAAAHAAIAAAAwAAwAAAAHAAEAAAAwAA0AAAAHAAIAAAApAAAAAAAHAAIAAAAqAAAAAAAHAAIAAAArAAAAAAAHAAIAAAAsAAAAAAAHAAIAAAAtAAAAAAAHAAIAAAAuAAAAAAAHAAIAAAAvAAAAAAAHAAIAAAAwAAAAAAAHAAIAAAAYAAsAAAAHAAAAAAAZAAsAAAAHAAAAAAAaAAsAAAAHAAAAAAAbAAsAAAAHAAAAAAAcAAsAAAAHAAAAAAAdAAsAAAAHAAAAAAAeAAsAAAAHAAAAAAAfAAsAAAAHAAAAAAAgAAsAAAAHAAAAAAAhAAsAAAAHAAAAAAAiAAsAAAAHAAAAAAAjAAsAAAAHAAAAAAAkAAsAAAAHAAAAAAAlAAsAAAAHAAAAAAAmAAsAAAAHAAAAAAAnAAsAAAAHAAAAAAAoAAsAAAAHAAAAAAApAAsAAAAHAAAAAAAqAAsAAAAHAAAAAAArAAsAAAAHAAAAAAAsAAsAAAAHAAAAAAAtAAsAAAAHAAAAAAAuAAsAAAAHAAAAAAAvAAsAAAAHAAAAAAAwAAsAAAAHAAAAAAAQAAsAAAAHAAAAAAARAAsAAAAHAAAAAAASAAsAAAAHAAAAAAATAAsAAAAHAAAAAAAUAAsAAAAHAAAAAAAVAAsAAAAHAAAAAAAWAAsAAAAHAAAAAAAXAAsAAAAHAAAAAAATAAwAAAAHAAEAAAAUAAwAAAAHAAEAAAATAA0AAAAHAAEAAAAUAA0AAAAHAAEAAAA=")
+tile_set = SubResource("TileSet_0816r")
+
+[node name="CharacterBody2D" parent="SceneObjects" instance=ExtResource("4_r5jya")]
+position = Vector2(352, 462)
+
+[node name="Camera2D" type="Camera2D" parent="SceneObjects/CharacterBody2D"]
+position = Vector2(3, 9)
+
+[node name="CollectableGroup" type="Node" parent="SceneObjects"]
+
+[node name="Collectable" parent="SceneObjects/CollectableGroup" instance=ExtResource("5_kuirk")]
+position = Vector2(460, 479)
+
+[node name="Collectable2" parent="SceneObjects/CollectableGroup" instance=ExtResource("5_kuirk")]
+position = Vector2(834, 440)
+
+[node name="Collectable3" parent="SceneObjects/CollectableGroup" instance=ExtResource("5_kuirk")]
+position = Vector2(1069, 396)
+
+[node name="Collectable4" parent="SceneObjects/CollectableGroup" instance=ExtResource("5_kuirk")]
+position = Vector2(1272, 488)
+
+[node name="Collectable5" parent="SceneObjects/CollectableGroup" instance=ExtResource("5_kuirk")]
+position = Vector2(1518, 490)
+
+[node name="Finish" parent="SceneObjects" instance=ExtResource("6_6n5yj")]
+position = Vector2(2167, 432)
+target_level = ExtResource("7_p5u3w")
+
+[node name="Enemies" type="Node" parent="SceneObjects"]
+
+[node name="Enemy" parent="SceneObjects/Enemies" instance=ExtResource("8_apar2")]
+position = Vector2(621, 492)
+
+[node name="Enemy2" parent="SceneObjects/Enemies" instance=ExtResource("8_apar2")]
+position = Vector2(202, 541)
+
+[node name="Area2D" type="Area2D" parent="SceneObjects"]
+position = Vector2(1023, 731)
+script = ExtResource("9_8fpvj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneObjects/Area2D"]
+shape = SubResource("WorldBoundaryShape2D_nhdel")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
+offset_left = 48.0
+offset_top = 52.0
+offset_right = 361.0
+offset_bottom = 181.0
+
+[node name="PointsLabel" type="Label" parent="UI/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Rings: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" parent="." instance=ExtResource("10_btddk")]
+
+[connection signal="body_entered" from="SceneObjects/Area2D" to="SceneObjects/Area2D" method="_on_body_entered"]

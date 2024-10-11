@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0wx3vvjoj80d"]
+
+[ext_resource type="Script" path="res://assets/pause.gd" id="1_8ehc6"]
+
+[node name="Pause" type="Node"]
+script = ExtResource("1_8ehc6")
+
+[node name="PausePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 22.0
+offset_right = 28.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -209.0
+offset_right = 218.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel/Label"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 202.0
+offset_right = 387.0
+offset_bottom = 341.0
+theme_override_constants/separation = 41
+
+[node name="Resume" type="Button" parent="PausePanel/Label/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="PausePanel/Label/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Main Menu"
+
+[connection signal="pressed" from="PausePanel/Label/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PausePanel/Label/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

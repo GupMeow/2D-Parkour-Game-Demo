@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://u0a666bfu44u"]
+
+[ext_resource type="Script" path="res://scenes/game_objects/collectable.gd" id="1_ukdxt"]
+[ext_resource type="Texture2D" uid="uid://bwvg5a324hjgj" path="res://assets/Custom Edited - Sonic the Hedgehog Customs - Objects.png" id="2_41yeg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jgl5"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 36, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5su3"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 56, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s5u4"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 76, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f5ou"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 96, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc8e3"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 116, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lawum"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 96, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfoeq"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 76, 21, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_156cx"]
+atlas = ExtResource("2_41yeg")
+region = Rect2(41, 56, 21, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f3mcl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jgl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5su3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s5u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f5ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc8e3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lawum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfoeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_156cx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdxe2"]
+radius = 5.50568
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ukdxt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_f3mcl")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.344268
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_kdxe2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
