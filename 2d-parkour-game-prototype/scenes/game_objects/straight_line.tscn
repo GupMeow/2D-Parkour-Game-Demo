@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgv8rawbfuj4t"]
+
+[ext_resource type="Texture2D" uid="uid://bd8lqshktm7xf" path="res://assets/straight_slope.png" id="1_wd0tf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s687k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wd0tf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StraightLine" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_s687k")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-112, -128, 1, -128, 2, -128, 128, -2, 128, 113, -114, -127, -114, -128)

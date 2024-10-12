@@ -15,9 +15,13 @@ const roll_deceleration = 10
 @onready var collision_jump: CollisionShape2D = $CollisionShape2D_jump
 @onready var collision_spin_dash_release: CollisionShape2D = $CollisionShape2D_spindash_release
 @onready var path_2d: Path2D = $"../Path/Path2D"
+@onready var ray_cast_2d: RayCast2D = $RayCast2D
 
 var offset = 0.0
 
+var spin_dash_release_timer = 0
+
+var spin_dash_released = false 
 
 var is_spindashing = false
 var spin_charge = 1000 # add a base velocity so that one charge isnt underwhelming
@@ -41,15 +45,34 @@ func release_spin_dash():
 		velocity.x += spin_charge * last_direction 
 		velocity.x = clamp(velocity.x, -top_speed, top_speed)
 		spin_charge = 1000
+		spin_dash_release_timer = 60
+		spin_dash_released = true 
 		
 func is_spin_dashing():
 	return sonic_sprite.animation == "spin_dash_release" or sonic_sprite.animation == "spin_dash_charge"
+	
+func adjust_ray_cast():
+	if is_on_floor() and ray_cast_2d.get_collision_normal().y < 1:
+		ray_cast_2d.target_position.y = 200.0
+	else:
+		ray_cast_2d.target_position.y = 10.0
 
 	
 func _physics_process(delta: float) -> void:
 	var current_animation = sonic_sprite.animation
+	var ground_normal = ray_cast_2d.get_collision_normal()
+	var ground_angle = fmod(720 - rad_to_deg(atan2(ground_normal.x, -ground_normal.y)), 360)
 
-#
+	
+	if ray_cast_2d.is_colliding():
+		$AnimatedSprite2D.rotation = -deg_to_rad(ground_angle)
+		$CollisionShape2D_idle.rotation = -deg_to_rad(ground_angle)
+		if ground_angle > 180 and ground_angle < 360:
+			velocity.y += 200 
+	else:
+		$AnimatedSprite2D.rotation = 0
+		$CollisionShape2D_idle.rotation = 0
+
 	collision_run.set_deferred("disabled", true)
 	collision_jump.set_deferred("disabled", true)
 	collision_spin_dash_release.set_deferred("disabled", true)
@@ -84,10 +107,41 @@ func _physics_process(delta: float) -> void:
 		sonic_sprite.animation = "spin_dash_release"
 		release_spin_dash()
 	else: # All movement when not crouching
-		is_spindashing = false
-		if not is_on_floor(): # Add the gravity.
-			velocity += get_gravity() * delta
-			sonic_sprite.animation = "jump"
+		if not is_on_floor(): # slope stuff
+			if ground_angle > 180 and ground_angle < 360:
+				if jumpy:
+					print("made it")
+					velocity += get_gravity() * delta
+					sonic_sprite.animation = "jump"
+				else: 
+					# Change Velocity based on slope
+					var slope_radians = deg_to_rad(ground_angle - 270)
+					var slope_speed = velocity.length()
+					
+					var new_velocity_y = slope_speed * sin(slope_radians)
+					var new_velocity_x = slope_speed * cos(slope_radians)
+					
+					velocity.x = lerp(velocity.x, new_velocity_x, 0.1)
+					velocity.y = lerp(velocity.y, new_velocity_y, 2)
+					
+					velocity.x += 50 * delta * sign(velocity.x)
+					velocity.y += 50 * delta
+					
+					velocity.y = clamp(velocity.y, -top_speed, top_speed)
+					
+					sonic_sprite.position.y = -20
+
+				if (velocity.x >1 || velocity.x < -1):
+					if abs(velocity.x) > 600:
+						sonic_sprite.animation = "sprinting"
+					else:
+						sonic_sprite.animation = "running"
+				else:
+					sonic_sprite.animation = "idle"
+			else:
+				sonic_sprite.position.y = 0
+				velocity += get_gravity() * delta
+				sonic_sprite.animation = "jump"
 		elif (velocity.x >1 || velocity.x < -1):
 			if abs(velocity.x) > 600:
 				sonic_sprite.animation = "sprinting"
@@ -147,5 +201,10 @@ func _physics_process(delta: float) -> void:
 				velocity.x += deceleration * delta_time
 				if velocity.x > 0:
 					velocity.x = 0
+	if spin_dash_release_timer > 0:
+		spin_dash_release_timer -= 1
+		if spin_dash_release_timer <= 0:
+			sonic_sprite.animation = "running"
+			spin_dash_released = false
 
 	move_and_slide()

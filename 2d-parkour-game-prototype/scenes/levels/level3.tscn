@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://k5dmni7v2fnl"]
+[gd_scene load_steps=18 format=3 uid="uid://k5dmni7v2fnl"]
 
-[ext_resource type="Texture2D" uid="uid://bg3fmfxphkpgk" path="res://assets/Gray.png" id="1_5v8xw"]
+[ext_resource type="Texture2D" uid="uid://buh58k5u2y8po" path="res://assets/Chemical Plant BG.png" id="1_lcc2j"]
+[ext_resource type="Texture2D" uid="uid://lcn72y3apkit" path="res://assets/ChemicalPlantBG2.png" id="2_x0hqt"]
 [ext_resource type="PackedScene" uid="uid://br87q0soulwu6" path="res://scenes/game_objects/sonic.tscn" id="3_1uyfh"]
 [ext_resource type="Script" path="res://assets/game_manager.gd" id="4_c3aut"]
 [ext_resource type="PackedScene" uid="uid://u0a666bfu44u" path="res://scenes/game_objects/collectable.tscn" id="5_eupma"]
@@ -9,9 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://b0wx3vvjoj80d" path="res://scenes/menu/pause.tscn" id="8_sxkgu"]
 [ext_resource type="PackedScene" uid="uid://diseff12jrafb" path="res://scenes/game_objects/chemical_plant_floor.tscn" id="9_6n8vj"]
 [ext_resource type="PackedScene" uid="uid://lftvxjtqck3u" path="res://scenes/game_objects/gray_slope.tscn" id="10_67kda"]
+[ext_resource type="PackedScene" uid="uid://c8b1g127jqe1e" path="res://scenes/game_objects/curve_start.tscn" id="10_ucxy4"]
+[ext_resource type="PackedScene" uid="uid://djhnf14fgr1u6" path="res://scenes/game_objects/curve_middle.tscn" id="11_ebrdv"]
+[ext_resource type="PackedScene" uid="uid://bgv8rawbfuj4t" path="res://scenes/game_objects/straight_line.tscn" id="12_leibu"]
+[ext_resource type="Texture2D" uid="uid://dkpf4dyob2gnh" path="res://assets/ChemicalPlantTheme.png" id="13_2p045"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m83jp"]
-load_path = "res://.godot/imported/GreenHill2.png-601f2d95ad1d6b160da440f01aa8c860.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_crk2q"]
 texture = SubResource("CompressedTexture2D_m83jp")
@@ -2553,10 +2557,18 @@ sources/0 = SubResource("TileSetAtlasSource_crk2q")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 2354.0
-offset_bottom = 668.0
-texture = ExtResource("1_5v8xw")
-stretch_mode = 1
+offset_left = 1.0
+offset_top = -570.0
+offset_right = 2984.0
+offset_bottom = 608.0
+texture = ExtResource("1_lcc2j")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+offset_top = 608.0
+offset_right = 2984.0
+offset_bottom = 1591.0
+texture = ExtResource("2_x0hqt")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -2565,7 +2577,7 @@ tile_map_data = PackedByteArray(0, 0, 26, 0, 9, 0, 0, 0, 6, 0, 3, 0, 0, 0)
 tile_set = SubResource("TileSet_8nli6")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_1uyfh")]
-position = Vector2(352, 462)
+position = Vector2(67, 285)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(3, 9)
@@ -2579,20 +2591,14 @@ script = ExtResource("4_c3aut")
 [node name="Collectable" parent="CollectableGroup" instance=ExtResource("5_eupma")]
 position = Vector2(545, 428)
 
-[node name="Collectable2" parent="CollectableGroup" instance=ExtResource("5_eupma")]
-position = Vector2(830, 392)
-
 [node name="Collectable3" parent="CollectableGroup" instance=ExtResource("5_eupma")]
-position = Vector2(1129, 435)
-
-[node name="Collectable4" parent="CollectableGroup" instance=ExtResource("5_eupma")]
-position = Vector2(1416, 292)
+position = Vector2(1712, 562)
 
 [node name="Collectable5" parent="CollectableGroup" instance=ExtResource("5_eupma")]
-position = Vector2(1696, 435)
+position = Vector2(887, -79)
 
 [node name="Finish" parent="." instance=ExtResource("6_782ru")]
-position = Vector2(2167, 432)
+position = Vector2(2233, 512)
 target_level = ExtResource("7_bvknx")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -2620,17 +2626,86 @@ vertical_alignment = 1
 
 [node name="LevelElements" type="Node" parent="."]
 
-[node name="ChemicalPlantFloor" parent="LevelElements" instance=ExtResource("9_6n8vj")]
-position = Vector2(128, 605)
+[node name="SlopedPipe" type="Node" parent="LevelElements"]
 
-[node name="ChemicalPlantFloor2" parent="LevelElements" instance=ExtResource("9_6n8vj")]
-position = Vector2(384, 605)
+[node name="StraightLine3" parent="LevelElements/SlopedPipe" instance=ExtResource("12_leibu")]
+position = Vector2(1534, 611)
 
-[node name="ChemicalPlantFloor3" parent="LevelElements" instance=ExtResource("9_6n8vj")]
-position = Vector2(640, 605)
+[node name="CurveMiddle2" parent="LevelElements/SlopedPipe" instance=ExtResource("11_ebrdv")]
+position = Vector2(1534, 355)
 
-[node name="ChemicalPlantFloor4" parent="LevelElements" instance=ExtResource("9_6n8vj")]
-position = Vector2(896, 605)
+[node name="StraightLine2" parent="LevelElements/SlopedPipe" instance=ExtResource("12_leibu")]
+position = Vector2(1022, 99)
 
-[node name="StaticBody2D" parent="LevelElements" instance=ExtResource("10_67kda")]
-position = Vector2(833, 477)
+[node name="CurveMiddle" parent="LevelElements/SlopedPipe" instance=ExtResource("11_ebrdv")]
+position = Vector2(1278, 99)
+
+[node name="CurveStart" parent="LevelElements/SlopedPipe" instance=ExtResource("10_ucxy4")]
+position = Vector2(-164, -861)
+
+[node name="StraightLine" parent="LevelElements/SlopedPipe" instance=ExtResource("12_leibu")]
+position = Vector2(1278, 355)
+
+[node name="Floor" type="Node" parent="LevelElements"]
+
+[node name="ChemicalPlantFloor6" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(2046, 673)
+
+[node name="ChemicalPlantFloor5" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(1790, 673)
+
+[node name="ChemicalPlantFloor" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(128, 419)
+
+[node name="ChemicalPlantFloor3" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(640, 163)
+
+[node name="ChemicalPlantFloor2" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(384, 291)
+
+[node name="ChemicalPlantFloor4" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(896, 35)
+
+[node name="ChemicalPlantFloor7" parent="LevelElements/Floor" instance=ExtResource("9_6n8vj")]
+position = Vector2(2302, 673)
+
+[node name="CurvedGraySlope" parent="LevelElements" instance=ExtResource("10_67kda")]
+position = Vector2(-161, -886)
+
+[node name="Extra" type="Node" parent="LevelElements"]
+
+[node name="Pillar6" type="Sprite2D" parent="LevelElements/Extra"]
+texture_filter = 1
+position = Vector2(1915, 990)
+scale = Vector2(4, 4)
+texture = ExtResource("13_2p045")
+
+[node name="Pillar" type="Sprite2D" parent="LevelElements/Extra"]
+texture_filter = 1
+position = Vector2(129, 611)
+scale = Vector2(2, 2)
+texture = ExtResource("13_2p045")
+
+[node name="Pillar2" type="Sprite2D" parent="LevelElements/Extra"]
+texture_filter = 1
+position = Vector2(896, 227)
+scale = Vector2(2, 2)
+texture = ExtResource("13_2p045")
+
+[node name="Pillar3" type="Sprite2D" parent="LevelElements/Extra"]
+texture_filter = 1
+position = Vector2(640, 355)
+scale = Vector2(2, 2)
+texture = ExtResource("13_2p045")
+
+[node name="Pillar4" type="Sprite2D" parent="LevelElements/Extra"]
+texture_filter = 1
+position = Vector2(384, 483)
+scale = Vector2(2, 2)
+texture = ExtResource("13_2p045")
+
+[node name="Pillar5" type="Sprite2D" parent="LevelElements/Extra"]
+texture_filter = 1
+position = Vector2(2301, 865)
+scale = Vector2(2, 2)
+texture = ExtResource("13_2p045")

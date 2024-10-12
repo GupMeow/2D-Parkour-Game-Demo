@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://br87q0soulwu6"]
+[gd_scene load_steps=43 format=3 uid="uid://br87q0soulwu6"]
 
 [ext_resource type="Texture2D" uid="uid://dbi0soju172wd" path="res://assets/sonicsheetsonic.png" id="1_7jjcn"]
 [ext_resource type="Script" path="res://scenes/game_objects/sonic.gd" id="1_puuj7"]
+[ext_resource type="Script" path="res://scenes/game_objects/ray_cast_2d.gd" id="3_ttjam"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2x6m5"]
 atlas = ExtResource("1_7jjcn")
@@ -285,7 +286,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfunx"]
-size = Vector2(60, 62.75)
+size = Vector2(65, 66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qikd"]
 size = Vector2(98, 99)
@@ -298,18 +299,19 @@ size = Vector2(78, 70)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(234, 33)
+floor_stop_on_slope = false
+floor_block_on_wall = false
 script = ExtResource("1_puuj7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2.70312, 2.54688)
 sprite_frames = SubResource("SpriteFrames_8b3wj")
-animation = &"idle"
+animation = &"spin_dash_charge"
 autoplay = "idle"
-frame_progress = 0.590741
 
 [node name="CollisionShape2D_idle" type="CollisionShape2D" parent="."]
-position = Vector2(7, 34.375)
+position = Vector2(8.5, 36)
 shape = SubResource("RectangleShape2D_hfunx")
 
 [node name="CollisionShape2D_run" type="CollisionShape2D" parent="."]
@@ -326,6 +328,12 @@ shape = SubResource("RectangleShape2D_kfsmh")
 visible = false
 position = Vector2(-4, 32)
 shape = SubResource("RectangleShape2D_7rj7k")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(6, -1)
+target_position = Vector2(1, 200)
+collide_with_areas = true
+script = ExtResource("3_ttjam")
 
 [connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="draw" from="CollisionShape2D_idle" to="." method="_on_collision_shape_2d_draw"]
